@@ -1,9 +1,9 @@
 import java.util.*;
 public class Battle{
     double runHp;
-    int playerTurn;//a check for when it is the player's turn (tried with boolean initially which led to errors)
-    int alienTurn;//a check for when it is the alien's turn (tried with boolean initially which led to errors)
-    int run;//a check for when the player runs (tried with boolean initially which led to errors)
+    int playerTurn;
+    int alienTurn;
+    int run;
     public Battle(Player p, Alien a){
         //sets it so the player gets the first action
         playerTurn = 1;
@@ -52,7 +52,7 @@ public class Battle{
                 }
                 //how the player heals
                 if(action == 2){
-                    //checks to make sure the player does not already have full hp using and if loop
+                    //checks to make sure the player does not already have full hp 
                     if(p.hp == p.hpMax){
                         System.out.println(p.Name + " already has full hp");
                     }else{
@@ -86,7 +86,7 @@ public class Battle{
                     System.out.println("Please enter the weapon you would like to equip");
                     //enhanced for loop to print the weapons' names and ammo
                     for(Weapon w: p.WeaponList){
-                        System.out.print(index + ". " );//for some reason this led to an error when consolidated with the following line
+                        System.out.print(index + ". " );
                         System.out.println(w.wName + " " + w.ammo + " ammo");
                         index = index + 1;
                     }
@@ -126,7 +126,7 @@ public class Battle{
                 }else{
                     //if the alien's hp is not full, it has a 15% chance to heal
                     double healChance = Math.random();//generates a random number between 0 and 1
-                    if(healChance>.15){//if loop to make the alien attack when healChance is greater than .15
+                    if(healChance>.15){//make the alien attack when healChance is greater than .15
                         System.out.println("The alien attacks");
                         p.playerDamaged(a.alienAttack());
                         //if the player's hp goes below 0, it is set to 0 because negative hp is impossible
