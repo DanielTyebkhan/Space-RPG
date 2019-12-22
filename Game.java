@@ -1,6 +1,4 @@
-//One known bug is that if the user enters input during the intro text sequence, the program will take that input the first opportunity it has, applying it to the battle that takes place after the intro.
-//I was not able to figure out how to fix this. I tried closing the scanner as well as using a boolean to check when the player had entered input
-//the game has no definite end
+
 import java.util.Scanner;//imports the scanner utility
 import java.util.concurrent.TimeUnit;//imports the concurrent TimeUnit utility
 public class Game{
@@ -38,7 +36,7 @@ public class Game{
             TimeUnit.SECONDS.sleep(2);
         }catch(InterruptedException e){
         }
-        //creates an intor battle between the player and a weak alien
+        //creates an intro battle between the player and a weak alien
         Battle intro = new Battle(player1, alien1);
         //creates a main menu object and runs the menuMainAction method
         MenuMain.showMenuMain(player1);
