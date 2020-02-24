@@ -53,7 +53,6 @@ public class Battle{
                     if(p.hp == p.hpMax){
                         System.out.println(p.Name + " already has full hp");
                     }else{
-                        //uses the player heal method to add hp
                         p.hp = p.hp+p.playerHeal();
                         if(p.hp>p.hpMax){
                             p.hp = p.hpMax;
@@ -77,7 +76,7 @@ public class Battle{
                 }
 
                 if(action == 4){
-                    int index = 1;//creates an index variable for the player to reference
+                    int index = 1;
                     System.out.println("Please enter the weapon you would like to equip");
                     for(Weapon w: p.WeaponList){
                         System.out.print(index + ". " );
@@ -100,7 +99,7 @@ public class Battle{
                         }
                         actionEquip = equip.nextInt();
                     }
-                    int equipIndex = actionEquip - 1;//variable to use to reference the array list. Uses the player's input - 1 so that the player can start with 1 instead of 
+                    int equipIndex = actionEquip - 1;
                     p.equipWeapon(p.WeaponList.get(equipIndex));
                     System.out.println(p.Name + " equipped " + p.WeaponList.get(0).wName);
                 }
@@ -109,8 +108,7 @@ public class Battle{
             while(alienTurn == 1 && run == 2){
                 if(a.hp == a.maxHp){//makes it so the alien will always attack if it is at full hp
                     System.out.println("The alien attacks");
-                    p.playerDamaged(a.alienAttack());//uses the alienAttack and playerDamaged methods to decrease the player's hp
-                    //if the player's hp goes below 0, it is set to 0 because negative hp is impossible
+                    p.playerDamaged(a.alienAttack());
                     if(p.hp < 0){
                         p.hp = 0;
                     }
@@ -119,11 +117,10 @@ public class Battle{
                     alienTurn = 2;
                 }else{
                     //if the alien's hp is not full, it has a 15% chance to heal
-                    double healChance = Math.random();//generates a random number between 0 and 1
+                    double healChance = Math.random();
                     if(healChance>.15){//make the alien attack when healChance is greater than .15
                         System.out.println("The alien attacks");
                         p.playerDamaged(a.alienAttack());
-                        //if the player's hp goes below 0, it is set to 0 because negative hp is impossible
                         if(p.hp < 0){
                             p.hp = 0;
                         }
@@ -139,33 +136,29 @@ public class Battle{
                 }
             }
 
-            if(a.hp == 0 && run == 2){//if the alien runs out of hp, the player wins
+            if(a.hp == 0 && run == 2){
                 System.out.println(p.Name + " defeated the alien");
-                p.money = a.deathCredits + p.money;//gives the player the alien's deathCredits
+                p.money = a.deathCredits + p.money;
                 System.out.println(p.Name + " gained " + a.deathCredits + " Credits");
-                //returns the user to the main menu
                 MenuMain.showMenuMain(p);
                 MenuMain.menuMainAction(p);
             }
-            if(p.hp == 0 && run == 2){//if the player runs out of hp, the player loses
+            if(p.hp == 0 && run == 2){
                 System.out.println("the alien killed " + p.Name);
                 p.hp = p.hpMax;//resets the player's hp
                 p.money = p.money-50;//makes the player lose 50 credits
-                //ensures the player does not end up with 0 credits
                 if(p.money<0){
                     p.money = 0;
                     System.out.println(p.Name + " lost the rest of their credits");
                 }else{
                     System.out.println(p.Name + " lost 50 Credits");
                 }
-                //returns the user to the main menu
                 MenuMain.showMenuMain(p);
                 MenuMain.menuMainAction(p);
             }
-            if(a.hp == p.hp){//earlier in the code, when the player ran, both hps were set to 0. this executes the run code
-                p.hp = runHp;//resets the player's hp to the stored value
+            if(a.hp == p.hp){
+                p.hp = runHp;
                 System.out.println(p.Name + " successfully ran away");
-                //returns the user to the main menu
                 MenuMain.showMenuMain(p);
                 MenuMain.menuMainAction(p);
             }
