@@ -39,22 +39,14 @@ public class Medicine{
 
     /**
      * Uses the medicine and removes one use
-     * @return The value to heal for if there are uses available, else 0
+     * @return The value to heal if there are uses available, else 0
      */
     public double use(){
-        if(!hasUses()){
+        if(uses > 0){
             System.out.println("That medicine is empty");
             return 0;
         }
         uses -= 1;
         return heal;
-    }
-
-    /**
-     * Checks if the medicine has uses remaining
-     * @return true if the medicine has uses, else false
-     */
-    private boolean hasUses(){
-        return uses>0;
     }
 }

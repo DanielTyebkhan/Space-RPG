@@ -43,14 +43,14 @@ public class Armor{
     }
 
     /**
-     * Overrides Object.toString to display relevent information about the armor
+     * Transforms the weapon into a String
      * @return The armor's name and defense value
      */
     @Override
     public String toString(){
         return name + ": " + defense + " defense";
     }
-    
+
     public static void main(String[] args) {
         System.out.println(new Armor(10, "Test Armor", 20));
     }
