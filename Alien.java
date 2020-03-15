@@ -2,10 +2,12 @@
  * @author Daniel Tyebkhan
  */
 public class Alien{
+    public static final double HEAL_LEVEL = 0.15;
+
     private double damage;
     private double maxHp;
     private double hp;
-    private double armor;
+    private double defense;
     private double heal;
     private double deathCredits;
     private String name;
@@ -14,15 +16,15 @@ public class Alien{
      * Constructor
      * @param damage The alien's damage
      * @param hp The alien's hp
-     * @param armor The alien's armor
+     * @param defense The alien's armor
      * @param heal The aliens heal capabilities
      * @param deathCredits The amount of credits the alien drops on death
      */
-    public Alien(double damage, double hp, double armor, double heal, double deathCredits, String name){
+    public Alien(double damage, double hp, double defense, double heal, double deathCredits, String name){
         this.damage = damage;
         this.hp = hp;
         maxHp = this.hp;
-        this.armor = armor;
+        this.defense = defense;
         this.heal = heal;
         this.deathCredits = deathCredits;
         this.name = name;
@@ -45,11 +47,20 @@ public class Alien{
     }
 
     /**
+     * Gets the amount of currency the alien has
+     * @return The amount of money the alien has
+     */
+    public double getMoney(){
+        return deathCredits;
+    }
+
+    /**
      * Inflicts damage on the alien based on a given value and the alien's armor
      * @param damage the damage to deal to the alien
      */
-    public void takeDamage(double damage){
-        hp -= (damage-(armor*.25));
+    public void sustainDamage(double damage){
+        hp -= (damage-(defense *.25));
+        System.out.println(name + " has " + hp + "/" + maxHp + " hp remaining");
     }
 
     /**
@@ -60,6 +71,23 @@ public class Alien{
         if(hp>maxHp){
             hp = maxHp;
         }
+        System.out.println(name + " has " + hp + "/" + maxHp + " hp remaining");
+    }
+
+    /**
+     * Checks if the alien is at full HP
+     * @return true if the alien has full hp, else false
+     */
+    public boolean isFullHp(){
+        return hp == maxHp;
+    }
+
+    /**
+     * Checks if the alien is dead
+     * @return true if the alien is dead, else false
+     */
+    public boolean isDead(){
+        return hp<=0;
     }
 
     /**
@@ -69,6 +97,6 @@ public class Alien{
     @Override
     public String toString(){
         return name + ":: Damage: " + damage + ":: Health: " + hp + "/" + maxHp + ":: Heal: " + heal +
-                ":: Armor: " + armor + ":: Credits: " + deathCredits;
+                ":: Armor: " + defense + ":: Credits: " + deathCredits;
     }
 }

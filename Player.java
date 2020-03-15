@@ -5,6 +5,13 @@ import java.util.Scanner;
  * @author Daniel Tyebkhan
  */
 class Player{
+    public static final int ATTACK = 1;
+    public static final int HEAL = 2;
+    public static final int RUN = 3;
+    public static final int CHANGE_WEAPON = 4;
+    public static final int CHANGE_MEDICINE = 5;
+    public static final double RUN_THRESHOLD = .25;
+
     private String name;
     private double hpMax;
     private double hp;
@@ -29,6 +36,14 @@ class Player{
         medicineList = new ArrayList <>();
         armorList = new ArrayList<>();
         armorList.add(new Armor(2, "Light Spacesuit", 0));
+    }
+
+    /**
+     * Gets the player's name
+     * @return The player's name
+     */
+    public String getName(){
+        return name;
     }
 
 
@@ -66,10 +81,34 @@ class Player{
 
     /**
      * Makes the player heal
-     * @return The value of the player's equipped medicine's heal
      */
-    public double heal(){
-        return medicineList.get(0).use();
+    public void heal(){
+        hp += medicineList.get(0).use();
+        System.out.println(name + "'s hp: " + hp + "/" + hpMax);
+    }
+
+    /**
+     * Checks if the player is dead
+     * @return true if the player is dead, else false
+     */
+    public boolean isDead(){
+        return hp <= 0;
+    }
+
+    /**
+     * Checks if the player can run
+     * @return true if the player can run, else false
+     */
+    public boolean canRun(){
+        return hp/hpMax > RUN_THRESHOLD;
+    }
+
+    /**
+     * Checks if the player is at full HP
+     * @return true if the player's hp is full, else false
+     */
+    public boolean isFullHp(){
+        return hp == hpMax;
     }
 
     /**
@@ -78,6 +117,7 @@ class Player{
      */
     public void sustainDamage(double damage){
         hp -= (damage - armorList.get(0).getDefense());
+        System.out.println(name + "has " + hp + "/" + hpMax + " HP");
     }
 
     /**
@@ -112,14 +152,21 @@ class Player{
 
     /**
      * Lets the player change weapons
-     * @param toEquip
      */
-    public void equipWeapon(Weapon toEquip){
-        int index = weaponList.indexOf(toEquip);
+    public void equipWeapon(){
+        System.out.println("Select the Weapon to Equip:");
+        showWeapons();
+        int index = getInput(1, weaponList.size()) -1;
         Weapon swap1 = weaponList.get(0);
-        weaponList.set(0, toEquip);
+        weaponList.set(0, weaponList.get(index));
         weaponList.set(index, swap1);
-        System.out.println(toEquip.getName() + " was equipped!");
+        System.out.println(weaponList.get(index).getName() + " was equipped!");
+    }
+
+    public void showWeapons(){
+        for(int i = 0; i<weaponList.size(); i++){
+            System.out.println(i+1 + ") " + weaponList.get(i));
+        }
     }
 
     /**
@@ -144,6 +191,43 @@ class Player{
         medicineList.set(0, toEquip);
         medicineList.set(index, first);
         System.out.println(toEquip.getName() + " was equipped");
+    }
+
+    /**
+     * Gets the users input between two numbers
+     * @param min The minimum number for the input
+     * @param max The maximum number for the input
+     * @return The player's input
+     */
+    public int getInput(int min, int max){
+        Scanner scanner = new Scanner(System.in);
+        while(!scanner.hasNextInt() ){
+            System.out.println("Please enter a valid number:");
+            scanner.nextLine();
+        }
+        int input = scanner.nextInt();
+        while(input<min || input>max){
+            System.out.println("Please enter a valid number:");
+            scanner.nextLine();
+        }
+        input = scanner.nextInt();
+        return input;
+    }
+
+    /**
+     * Gives the player currency
+     * @param toAdd The amount of currency to give the player
+     */
+    public void addMoney(double toAdd){
+        money += toAdd;
+    }
+
+    /**
+     * Resets the player's hp and decreases its currency
+     */
+    public void die(){
+        hp = hpMax;
+        money -= 50;
     }
 }
 

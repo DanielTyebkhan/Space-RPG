@@ -1,8 +1,7 @@
-import java.util.*;
 public class MenuMain{
 
-    public static void showMenuMain(Player p){
-        System.out.println("Welcome to Orbit " + p.Name + "!");
+    public static void showMenuMain(Player player){
+        System.out.println("Welcome to Orbit " + player.getName() + "!");
         System.out.println("Please select an action:");
         System.out.println("1. Travel to Earth");
         System.out.println("2. Travel to Aiur (Heavy Weaponry Recommended)");
@@ -10,44 +9,29 @@ public class MenuMain{
         System.out.println("4. View your inventory");
     }
 
-    public static void menuMainAction(Player p){
-        //checks that user input is a valid number between 1 and 4
-        Scanner input = new Scanner(System.in);
-        while(!input.hasNextInt()){
-            System.out.println("Please enter a valid integer response");
-            input.nextLine();
-        }
-        int action = input.nextInt();
-        while(action>4 || action<1){
-            System.out.println("Please enter a valid integer response");
-            input.nextLine();
-            while(!input.hasNextInt()){
-                System.out.println("Please enter a valid integer response");
-                input.nextLine();
-            }
-            action = input.nextInt();
-        }
+    public static void menuMainAction(Player player){
+        int action = player.getInput(1,4);
 
         if(action == 1){
-            Alien nomac = new Alien(5,50,1,1, 20);
-            System.out.println(p.Name + " has encountered a Robot Nomac");
-            Battle battle = new Battle(p, nomac);
+            Alien nomac = new Alien(5,50,.25,5, 20, "Nomac");
+            System.out.println(player.getName() + " has encountered " + nomac.getName());
+            Battle battle = new Battle(player, nomac);
         }
 
         if(action == 2){
-            Alien Protoss = new Alien(20, 100, 0, 10, 100);
-            System.out.println(p.Name + " has encountered a Protoss");
-            Battle battle = new Battle(p, Protoss);
+            Alien protoss = new Alien(20, 100, 0, 10, 100, "Protoss");
+            System.out.println(player.getName() + " has encountered " + protoss.getName());
+            Battle battle = new Battle(player, protoss);
         }
 
         if(action == 3){
-            Weapon w = new Weapon(50, 10, 10, "Big Gun", 200);
-            Shop mainShop = new Shop(p, w);
-            Shop.shopping(p);
+            Weapon w = new Weapon(50, 10, "Big Gun", 200);
+            Shop mainShop = new Shop(player, w);
+            Shop.shopping(player);
         }
 
         if(action == 4){
-            p.showInventory(p);
+            player.showInventory();
         }
     }
 }
