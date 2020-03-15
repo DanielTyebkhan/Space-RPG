@@ -1,14 +1,14 @@
 import java.util.*;
 public class Battle{
     Player player;
-    Alien enemy;
+    Alien alien;
     boolean playerTurn;
     boolean alienTurn;
     boolean playerRan;
 
-    public Battle(Player player, Alien enemy) {
+    public Battle(Player player, Alien alien) {
         this.player = player;
-        this.enemy = enemy;
+        this.alien = alien;
         playerTurn = true;
         alienTurn = false;
         playerRan = false;
@@ -16,15 +16,17 @@ public class Battle{
     }
 
     public void fight() {
-        while (!player.isDead() && !enemy.isDead() && !playerRan) {
+        while (!player.isDead() && !alien.isDead() && !playerRan) {
             while (playerTurn && !playerRan) {
                 int action = getPlayerInput();
                 if (action == Player.ATTACK) {
-                    enemy.sustainDamage(player.attack());
-                    if (enemy.isDead()) {
+                    alien.sustainDamage(player.attack());
+                    if (alien.isDead()) {
                         playerTurn = false;
-                        alienTurn = true;
+                        alienTurn = false;
                     }
+                    playerTurn = false;
+                    alienTurn = true;
                 } else if (action == Player.HEAL) {
                     if (player.isFullHp()) {
                         System.out.println(player.getName() + " already has full hp");
@@ -45,16 +47,16 @@ public class Battle{
             }
 
             while (alienTurn && !playerRan) {
-                if (enemy.isFullHp()) {
-                    System.out.println(enemy.getName() + " Attacks!");
-                    player.sustainDamage(enemy.getDamage());
+                if (alien.isFullHp()) {
+                    System.out.println(alien.getName() + " Attacks!");
+                    player.sustainDamage(alien.getDamage());
                 } else {
                     double healChance = Math.random();
                     if (healChance > Alien.HEAL_LEVEL) {
-                        System.out.println(enemy.getName() + " Attacks!");
-                        player.sustainDamage(enemy.getDamage());
+                        System.out.println(alien.getName() + " Attacks!");
+                        player.sustainDamage(alien.getDamage());
                     } else {
-                        enemy.heal();
+                        alien.heal();
                     }
                 }
                 alienTurn = false;
@@ -64,13 +66,13 @@ public class Battle{
         determineResults();
     }
     public void determineResults(){
-        if(enemy.isDead()) {
-            System.out.println(player.getName() + " has defeated " + enemy.getName());
-            player.addMoney(enemy.getMoney());
+        if(alien.isDead()) {
+            System.out.println(player.getName() + " has defeated " + alien.getName());
+            player.addMoney(alien.getMoney());
             MenuMain.showMenuMain(player);
             MenuMain.menuMainAction(player);
         }else if(player.isDead()) {
-            System.out.println(enemy.getName() + " has defeated " + player.getName());
+            System.out.println(alien.getName() + " has defeated " + player.getName());
             player.die();
             MenuMain.showMenuMain(player);
             MenuMain.menuMainAction(player);
