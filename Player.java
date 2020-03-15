@@ -119,6 +119,9 @@ class Player{
      */
     public void sustainDamage(double damage){
         hp -= (damage - armorList.get(0).getDefense());
+        if(hp < 0){
+            hp = 0;
+        }
         System.out.println(name + " has " + hp + "/" + hpMax + " HP");
     }
 
@@ -148,8 +151,6 @@ class Player{
             System.out.println(a);
         }
         System.out.println(name +" Has " + money + " Credits.");
-        MenuMain.showMenuMain(this);
-        MenuMain.menuMainAction(this);
     }
 
     /**
@@ -220,13 +221,22 @@ class Player{
         return action;
     }
 
+    public double getMoney(){
+        return money;
+    }
+
     /**
      * Gives the player currency
      * @param toAdd The amount of currency to give the player
      */
     public void addMoney(double toAdd){
         money += toAdd;
-        System.out.println(name + " got " + toAdd + "credits.");
+        System.out.println(name + " got " + toAdd + " credits.");
+    }
+
+    public void loseMoney(double toLose){
+        money -= toLose;
+        System.out.println(name + " lost " + toLose + " credits");
     }
 
     /**
@@ -234,7 +244,7 @@ class Player{
      */
     public void die(){
         hp = hpMax;
-        money -= 50;
+        loseMoney(50);
     }
 }
 

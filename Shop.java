@@ -1,97 +1,82 @@
-//import java.util.*;
-//public class Shop{
-//    static Player shopper = new Player();
-//    static Weapon weapon;
-//    public Shop(Player player, Weapon weapon){
-//        shopper = player;
-//        weapon = weapon;
-//        System.out.println(p.Name + ", Welcome to the Space Station!");
-//        System.out.println(p.Name + "'s credits: " + p.money);
-//        System.out.println("Please Select an Item to Purchase or Press 4 to See a List of Your Current Items");
-//        System.out.println("1. " + w.wName + "  " + w.wPrice + " Credits");
-//        System.out.println("2. 5 Medicine Refill 10 Credits");
-//        System.out.println("3. 20 Ammunition 10 Credits");
-//        System.out.println("4. View Inventory");
-//        System.out.println("5. Return to Orbit");
-//    }
-//
-//    public static void shopping(Player p){
-//        System.out.println("What are you buying?");
-//        //gets user input between 1 and 5
-//        Scanner input = new Scanner(System.in);
-//        while(!input.hasNextInt()){
-//            System.out.println("Please enter a valid number 1-5");
-//            input.nextLine();
-//        }
-//        int action = input.nextInt();
-//        while(action>5 || action<1){
-//            System.out.println("Please enter a valid number 1-5");
-//            input.nextLine();
-//            while(!input.hasNextInt()){
-//                System.out.println("Please enter a valid number 1-5");
-//                input.nextLine();
-//            }
-//            action = input.nextInt();
-//        }
-//        //determines which method to run based on the player's input
-//        if(action == 1){
-//            sellWeapon(p, weapon);
-//        }
-//        if(action == 2){
-//            sellMedicine(p);
-//        }
-//        if(action == 3){
-//            sellAmmo(p);
-//        }
-//        if(action == 4){
-//            p.showInventoryShop(p);
-//            Shop.shopping(p);
-//        }
-//        if(action == 5){
-//            MenuMain.showMenuMain(p);
-//            MenuMain.menuMainAction(p);
-//        }
-//    }
-//
-//    public static void sellWeapon(Player p, Weapon w){
-//        if(p.money>= w.wPrice){
-//            p.money = p.money-w.wPrice;//reduces the player's currency by the price of the weapon
-//            p.weaponList.add(w);
-//            p.equipWeapon(w);//runs the player method to equip the newly purchased weapon
-//            System.out.println(p.Name + " Purchased and Equipped " + w.wName);
-//            Shop.shopping(p);
-//            //if the player doesn't have enough credits, they are taken back to the shop
-//        }else{
-//            System.out.println(p.Name + " does not have enough credits to purchase " + w.wName);
-//            Shop.shopping(p);
-//        }
-//    }
-//
-//    public static void sellMedicine(Player p){
-//        if(p.money>=50){
-//            p.money = p.money-10;//reduces the player's currency by 10
-//            p.medicineList.get(0).uses = p.medicineList.get(0).uses + 5;
-//            System.out.println(p.Name + " Purchased 5 Medicine Refill");
-//            Shop.shopping(p);
-//            //if the player doesn't have enough credits, they are taken back to the shop
-//        }else{
-//            System.out.println(p.Name + " does not have enough credits to purchase medicine");
-//            Shop.shopping(p);
-//        }
-//    }
-//
-//    public static void sellAmmo(Player p){
-//        if(p.money>=10){
-//            p.money = p.money - 10;//reduces the player's currency by 10
-//            p.weaponList.get(0).ammo = p.weaponList.get(0).ammo + 20;//adds the ammo the player's equipped weapon
-//            if(p.weaponList.get(0).ammo>p.weaponList.get(0).maxAmmo){
-//                p.weaponList.get(0).ammo = p.weaponList.get(0).maxAmmo;//if the ammo added exceeds the equipped weapon's max ammo, the ammo is set to max ammo
-//            }
-//            System.out.println(p.Name + " Puchased more ammo");
-//            Shop.shopping(p);
-//        }else{
-//            System.out.println(p.Name + "does not have enough credits to purchase Ammo");
-//            Shop.shopping(p);
-//        }
-//    }
-//}
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
+public class Shop{
+    private static final int INVENTORY = 1;
+    private static final int MENU = 2;
+    private static final int AMMO = 3;
+    private static final int START_LISTINGS = 4;
+
+    private Player shopper;
+    private ArrayList<Sellable> products;
+
+    public Shop(Player shopper){
+        this.shopper = shopper;
+        products = new ArrayList<>();
+        addItem(new Weapon(50, 5, "Big Gun", 1000));
+        addItem(new Medicine(20, 5, "Big Medicine", 500));
+        addItem(new Armor(5, "Advanced Armor", 350));
+        shop();
+    }
+
+    public void showOptions(){
+        System.out.println(shopper.getName() + ", Welcome to the Space Station!");
+        System.out.println(shopper.getName() + "'s credits: " + shopper.getMoney());
+        System.out.println("Please Select an Item to Purchase or Action to Take");
+        System.out.println(INVENTORY + ") View Inventory");
+        System.out.println(MENU + ") Return to Orbit");
+        System.out.println(AMMO + ") Ammunition Refill");
+        showSellables();
+    }
+
+    public void showSellables(){
+        int i = START_LISTINGS;
+        for(Sellable s: products){
+            System.out.println(i + ") " + s);
+            i++;
+        }
+    }
+
+    public void addItem(Sellable toAdd) {
+        products.add(toAdd);
+    }
+
+    public void shop(){
+        showOptions();
+        showSellables();
+        System.out.println("What are you buying?");
+        int action = shopper.getInput(1,START_LISTINGS+products.size());
+        if(action == INVENTORY){
+            shopper.showInventory();
+            shop();
+        }else if(action == MENU){
+            MenuMain.showMenuMain(shopper);
+            MenuMain.menuMainAction(shopper);
+        }else if(action == AMMO){
+            //TODO
+        }else{
+            sellItem(products.get(action - START_LISTINGS));
+        }
+    }
+
+    public void sellItem(Sellable product){
+        if(shopper.getMoney() < product.getPrice()){
+            System.out.println("You don't have enough credits to purchase that");
+        }else{
+            shopper.loseMoney(product.getPrice());
+            if(product instanceof Weapon) {
+                shopper.addWeapon((Weapon) product);
+            }else if(product instanceof Medicine){
+                shopper.addMedicine((Medicine) product);
+            }else if(product instanceof Armor){
+                shopper.addArmor((Armor) product);
+            }
+        }
+        shop();
+    }
+
+    public static void main(String[] args) {
+        Player player = new Player(20, 10000);
+        Shop shop = new Shop(player);
+    }
+}

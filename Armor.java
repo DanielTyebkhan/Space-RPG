@@ -1,10 +1,8 @@
 /**
  * @author Daniel Tyebkhan
  */
-public class Armor{
+public class Armor extends Sellable{
     private double defense;
-    private double price;
-    private String name;
 
     /**
      * Constructor
@@ -13,9 +11,8 @@ public class Armor{
      * @param price The armor's price
      */
     public Armor(double defense, String name, double price){
+        super(name, price);
         this.defense = defense;
-        this.name = name;
-        this.price = price;
     }
 
     /**
@@ -27,28 +24,12 @@ public class Armor{
     }
 
     /**
-     * Gets the armor's price
-     * @return The armor's price
-     */
-    public double getPrice(){
-        return price;
-    }
-
-    /**
-     * Get's the armor's name
-     * @return the name of the armor
-     */
-    public String getName(){
-        return name;
-    }
-
-    /**
      * Transforms the weapon into a String
      * @return The armor's name and defense value
      */
     @Override
     public String toString(){
-        return name + ": " + defense + " defense";
+        return getName() + ": " + defense + " defense";
     }
 
     public static void main(String[] args) {

@@ -1,11 +1,9 @@
 /**
  * @author Daniel Tyebkhan
  */
-public class Medicine{
+public class Medicine extends Sellable{
     private double uses;
     private double heal;
-    private double price;
-    private String name;
 
     /**
      * Constructor
@@ -15,26 +13,9 @@ public class Medicine{
      * @param price The price of the medicine
      */
     public Medicine(double heal, double uses, String name, double price){
+        super(name, price);
         this.heal = heal;
         this.uses = uses;
-        this.name = name;
-        this.price = price;
-    }
-
-    /**
-     * Gets the price of the medicine
-     * @return The medicine's price
-     */
-    public double getPrice(){
-        return price;
-    }
-
-    /**
-     * Gets the name of the medicine
-     * @return The medicine's name
-     */
-    public String getName(){
-        return name;
     }
 
     /**
@@ -56,6 +37,6 @@ public class Medicine{
      */
     @Override
     public String toString(){
-        return name + ":: Heal: " + heal + ":: Uses: " + uses;
+        return getName() + ":: Heal: " + heal + ":: Uses: " + uses;
     }
 }
