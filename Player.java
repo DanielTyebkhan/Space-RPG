@@ -201,19 +201,22 @@ class Player{
      * @return The player's input
      */
     public int getInput(int min, int max){
-        Scanner scanner = new Scanner(System.in);
-        while(!scanner.hasNextInt() ){
+        Scanner input = new Scanner(System.in);
+        while(!input.hasNextInt()){
             System.out.println("Please enter a valid number:");
-            scanner.nextLine();
+            input.nextLine();
         }
-        int input = scanner.nextInt();
-        while(input<min || input>max){
+        int action = input.nextInt();
+        while(action>max || action<min){
             System.out.println("Please enter a valid number:");
-            scanner.nextLine();
-            input = scanner.nextInt();
+            input.nextLine();
+            while(!input.hasNextInt()){
+                System.out.println("Please enter a valid number:");
+                input.nextLine();
+            }
+            action = input.nextInt();
         }
-        input = scanner.nextInt();
-        return input;
+        return action;
     }
 
     /**

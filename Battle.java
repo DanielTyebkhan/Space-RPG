@@ -18,7 +18,8 @@ public class Battle{
     public void fight() {
         while (!player.isDead() && !alien.isDead() && !playerRan) {
             while (playerTurn && !playerRan) {
-                int action = getPlayerInput();
+                showOptions();
+                int action = player.getInput(1,4);
                 if (action == Player.ATTACK) {
                     alien.sustainDamage(player.attack());
                     playerTurn = false;
@@ -79,26 +80,6 @@ public class Battle{
             MenuMain.showMenuMain(player);
             MenuMain.menuMainAction(player);
         }
-    }
-
-    public int getPlayerInput(){
-        showOptions();
-        Scanner input = new Scanner(System.in);
-        while(!input.hasNextInt()){
-            System.out.println("Please enter a valid number 1-4");
-            input.nextLine();
-        }
-        int action = input.nextInt();
-        while(action>4 || action<1){
-            System.out.println("Please enter a valid number 1-4");
-            input.nextLine();
-            while(!input.hasNextInt()){
-                System.out.println("Please enter a valid number 1-4");
-                input.nextLine();
-            }
-            action = input.nextInt();
-        }
-        return action;
     }
 
     public void showOptions(){
