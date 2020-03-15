@@ -1,13 +1,57 @@
+/**
+ * @author Daniel Tyebkhan
+ */
 public class Armor{
-    double defense;//stores the defense value
-    double durability;//stores the durability(I did not end up implementing this feature)
-    double aPrice;//stores the armor's price (no armor is currently available in the shop, but the code would be very similar to how weapons are sold and equipped)
-    String aName;//stores the armors name
+    private double defense;
+    private double price;
+    private String name;
 
-    public Armor(double idefense, double idurability, String iaName, double iaPrice){
-        defense = idefense;
-        durability = idurability;
-        aName = iaName;
-        aPrice = iaPrice;
+    /**
+     * Constructor
+     * @param defense The armor's defense value to reduce incoming damage
+     * @param name The armor's name
+     * @param price The armor's price
+     */
+    public Armor(double defense, String name, double price){
+        this.defense = defense;
+        this.name = name;
+        this.price = price;
+    }
+
+    /**
+     * Gets the armor's defense to subtract from incoming damage
+     * @return The armor's defense value
+     */
+    public double getDefense(){
+        return defense;
+    }
+
+    /**
+     * Gets the armor's price
+     * @return The armor's price
+     */
+    public double getPrice(){
+        return price;
+    }
+
+    /**
+     * Get's the armor's name
+     * @return the name of the armor
+     */
+    public String getName(){
+        return name;
+    }
+
+    /**
+     * Overrides Object.toString to display relevent information about the armor
+     * @return The armor's name and defense value
+     */
+    @Override
+    public String toString(){
+        return name + ": " + defense + " defense";
+    }
+    
+    public static void main(String[] args) {
+        System.out.println(new Armor(10, "Test Armor", 20));
     }
 }

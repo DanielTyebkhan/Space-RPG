@@ -78,7 +78,7 @@ public class Battle{
                 if(action == 4){
                     int index = 1;
                     System.out.println("Please enter the weapon you would like to equip");
-                    for(Weapon w: p.WeaponList){
+                    for(Weapon w: p.weaponList){
                         System.out.print(index + ". " );
                         System.out.println(w.wName + " " + w.ammo + " ammo");
                         index = index + 1;
@@ -90,7 +90,7 @@ public class Battle{
                         equip.nextLine();
                     }
                     int actionEquip = equip.nextInt();
-                    while(actionEquip>p.WeaponList.size() || actionEquip<1){
+                    while(actionEquip>p.weaponList.size() || actionEquip<1){
                         System.out.println("Please enter a valid number");
                         equip.nextLine();
                         while(!input.hasNextInt()){
@@ -100,8 +100,8 @@ public class Battle{
                         actionEquip = equip.nextInt();
                     }
                     int equipIndex = actionEquip - 1;
-                    p.equipWeapon(p.WeaponList.get(equipIndex));
-                    System.out.println(p.Name + " equipped " + p.WeaponList.get(0).wName);
+                    p.equipWeapon(p.weaponList.get(equipIndex));
+                    System.out.println(p.Name + " equipped " + p.weaponList.get(0).wName);
                 }
             }
 

@@ -1,29 +1,51 @@
+/**
+ * @author Daniel Tyebkhan
+ */
 public class Alien{
-    double damage;//stores the alien's damage
-    double maxHp;//stores the alien's max hp
-    double hp;//stores the alien's current hp
-    double armor;//stores the alien's armor
-    double heal;//stores the alien's heal value
-    double deathCredits;//stores the amount of gold the player will receive for killing an alien
-    public Alien(double idamage, double ihp, double iarmor, double iheal, double ideathCredits){
-        damage = idamage;
-        maxHp = ihp;
-        hp = maxHp;
-        armor = iarmor;
-        heal = iheal;
-        deathCredits = ideathCredits;
+    private double damage;
+    private double maxHp;
+    private double hp;
+    private double armor;
+    private double heal;
+    private double deathCredits;
+
+    /**
+     * Constructor
+     * @param damage The alien's damage
+     * @param hp The alien's hp
+     * @param armor The alien's armor
+     * @param heal The aliens heal capabilities
+     * @param deathCredits The amount of credits the alien drops on death
+     */
+    public Alien(double damage, double hp, double armor, double heal, double deathCredits){
+        this.damage = damage;
+        this.hp = hp;
+        maxHp = this.hp;
+        this.armor = armor;
+        this.heal = heal;
+        this.deathCredits = deathCredits;
     }
 
-    double alienAttack(){
+    /**
+     * Gets the damage the alien does
+     * @return the alien's damage
+     */
+    public double getDamage(){
         return damage;
     }
 
-    public void alienDamaged(double i){
-        i = i-(armor*.25);
-        hp = hp-i;
+    /**
+     * Inflicts damage on the alien based on a given value and the alien's armor
+     * @param damage the damage to deal to the alien
+     */
+    public void takeDamage(double damage){
+        hp -= (damage-(armor*.25));
     }
 
-    public void alienHeal(){
+    /**
+     * Heals the alien based on its heal amount
+     */
+    public void heal(){
         hp = hp+heal;
         if(hp>maxHp){
             hp = maxHp;

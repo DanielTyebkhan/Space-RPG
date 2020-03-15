@@ -1,13 +1,34 @@
 public class Medicine{
-    double uses;//number of uses the medicine has left
-    double heal;//how much hp the medicine gives
-    double mPrice;//stores the price (I did not actually end up using this function)
-    String mName;//stores the name of the medicine
+    private double uses;
+    private double heal;
+    private double price;
+    private String name;
 
-    public Medicine(double iheal, double iuses, String imName, double imPrice){
-        uses = iuses;
-        heal = iheal;
-        mName = imName;
-        mPrice = imPrice;
+    public Medicine(double heal, double uses, String name, double price){
+        this.heal = heal;
+        this.uses = uses;
+        this.name = name;
+        this.price = price;
+    }
+
+    public double getPrice(){
+        return price;
+    }
+
+    public String getName(){
+        return name;
+    }
+
+    public double use(){
+        if(!hasUses()){
+            System.out.println("That medicine is empty");
+            return 0;
+        }
+        uses -= 1;
+        return heal;
+    }
+
+    private boolean hasUses(){
+        return uses>0;
     }
 }

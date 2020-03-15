@@ -56,7 +56,7 @@ public class Shop{
     public static void sellWeapon(Player p, Weapon w){
         if(p.money>= w.wPrice){
             p.money = p.money-w.wPrice;//reduces the player's currency by the price of the weapon
-            p.WeaponList.add(w);
+            p.weaponList.add(w);
             p.equipWeapon(w);//runs the player method to equip the newly purchased weapon
             System.out.println(p.Name + " Purchased and Equipped " + w.wName);
             Shop.shopping(p);
@@ -70,7 +70,7 @@ public class Shop{
     public static void sellMedicine(Player p){
         if(p.money>=50){
             p.money = p.money-10;//reduces the player's currency by 10
-            p.MedicineList.get(0).uses = p.MedicineList.get(0).uses + 5;
+            p.medicineList.get(0).uses = p.medicineList.get(0).uses + 5;
             System.out.println(p.Name + " Purchased 5 Medicine Refill");
             Shop.shopping(p);
             //if the player doesn't have enough credits, they are taken back to the shop
@@ -83,9 +83,9 @@ public class Shop{
     public static void sellAmmo(Player p){
         if(p.money>=10){
             p.money = p.money - 10;//reduces the player's currency by 10
-            p.WeaponList.get(0).ammo = p.WeaponList.get(0).ammo + 20;//adds the ammo the player's equipped weapon
-            if(p.WeaponList.get(0).ammo>p.WeaponList.get(0).maxAmmo){
-                p.WeaponList.get(0).ammo = p.WeaponList.get(0).maxAmmo;//if the ammo added exceeds the equipped weapon's max ammo, the ammo is set to max ammo
+            p.weaponList.get(0).ammo = p.weaponList.get(0).ammo + 20;//adds the ammo the player's equipped weapon
+            if(p.weaponList.get(0).ammo>p.weaponList.get(0).maxAmmo){
+                p.weaponList.get(0).ammo = p.weaponList.get(0).maxAmmo;//if the ammo added exceeds the equipped weapon's max ammo, the ammo is set to max ammo
             }
             System.out.println(p.Name + " Puchased more ammo"); 
             Shop.shopping(p);
