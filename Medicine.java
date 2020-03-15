@@ -42,7 +42,7 @@ public class Medicine{
      * @return The value to heal if there are uses available, else 0
      */
     public double use(){
-        if(uses > 0){
+        if(!(uses > 0)){
             System.out.println("That medicine is empty");
             return 0;
         }

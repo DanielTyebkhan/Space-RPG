@@ -21,12 +21,10 @@ public class Battle{
                 int action = getPlayerInput();
                 if (action == Player.ATTACK) {
                     alien.sustainDamage(player.attack());
-                    if (alien.isDead()) {
-                        playerTurn = false;
-                        alienTurn = false;
-                    }
                     playerTurn = false;
-                    alienTurn = true;
+                    if(!alien.isDead()) {
+                        alienTurn = true;
+                    }
                 } else if (action == Player.HEAL) {
                     if (player.isFullHp()) {
                         System.out.println(player.getName() + " already has full hp");

@@ -83,6 +83,9 @@ class Player{
      */
     public void heal(){
         hp += medicineList.get(0).use();
+        if(hp>hpMax){
+            hp = hpMax;
+        }
         System.out.println(name + "'s hp: " + hp + "/" + hpMax);
     }
 

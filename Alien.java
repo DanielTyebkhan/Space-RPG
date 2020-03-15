@@ -60,6 +60,9 @@ public class Alien{
      */
     public void sustainDamage(double damage){
         hp -= (damage-(defense *.25));
+        if(hp<0){
+            hp = 0;
+        }
         System.out.println(name + " has " + hp + "/" + maxHp + " hp remaining");
     }
 
@@ -71,6 +74,7 @@ public class Alien{
         if(hp>maxHp){
             hp = maxHp;
         }
+        System.out.println(name + " healed.");
         System.out.println(name + " has " + hp + "/" + maxHp + " hp remaining");
     }
 
