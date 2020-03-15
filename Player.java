@@ -22,7 +22,6 @@ class Player{
 
     /**
      * Constructor
-     * @param name The player's name
      * @param hpMax The player's maximum health
      * @param money The player's starting money
      */
@@ -119,7 +118,7 @@ class Player{
      */
     public void sustainDamage(double damage){
         hp -= (damage - armorList.get(0).getDefense());
-        System.out.println(name + "has " + hp + "/" + hpMax + " HP");
+        System.out.println(name + " has " + hp + "/" + hpMax + " HP");
     }
 
     /**
@@ -211,6 +210,7 @@ class Player{
         while(input<min || input>max){
             System.out.println("Please enter a valid number:");
             scanner.nextLine();
+            input = scanner.nextInt();
         }
         input = scanner.nextInt();
         return input;
