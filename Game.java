@@ -3,12 +3,12 @@ import java.util.concurrent.TimeUnit;
 public class Game{
     public static void main(String[] args){
 
-        Player player1 = new Player();
-        player1.addWeapon(new Weapon(10,100,100, "Space Rifle", 0));//gives the player their initial weapon
-        player1.addMedicine(new Medicine(10, 5, "Weak Medicine", 0));//gives the player medicine
-        Alien alien1 = new Alien(5,30,1,1, 20);
-        player1.chooseName();//lets the player pick their name via the chooseName method in the Player class
-        System.out.println("Welcome to Space " + player1.Name);
+        Player player = new Player(200, 500);
+        player.chooseName();
+        player.addWeapon(new Weapon(10,100, "Space Rifle", 0));
+        player.addMedicine(new Medicine(10, 5, "Weak Medicine", 0));
+        Alien alien = new Alien(5,30,1,1, 20, "Arachnid");
+        System.out.println("Welcome to Space " + player.getName());
         try{
             TimeUnit.SECONDS.sleep(2);
         }catch(InterruptedException e){
@@ -28,16 +28,16 @@ public class Game{
             TimeUnit.SECONDS.sleep(2);
         }catch(InterruptedException e){
         }
-        System.out.println(player1.Name + " has encountered an Arachnid");
+        System.out.println(player.getName() + " has encountered an Arachnid");
         try{
             TimeUnit.SECONDS.sleep(2);
         }catch(InterruptedException e){
         }
 
-        Battle intro = new Battle(player1, alien1);
+        Battle intro = new Battle(player, alien);
 
-        MenuMain.showMenuMain(player1);
-        MenuMain.menuMainAction(player1);
+        MenuMain.showMenuMain(player);
+        MenuMain.menuMainAction(player);
 
     }
 }

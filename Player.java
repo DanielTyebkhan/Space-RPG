@@ -26,8 +26,7 @@ class Player{
      * @param hpMax The player's maximum health
      * @param money The player's starting money
      */
-    public Player(String name, double hpMax, double money){
-        this.name = name;
+    public Player(double hpMax, double money){
         this.hpMax = hpMax;
         this.hp = hpMax;
         this.money = money;
