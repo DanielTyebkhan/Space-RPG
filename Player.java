@@ -85,6 +85,7 @@ class Player{
         if(hp>hpMax){
             hp = hpMax;
         }
+        System.out.println(name + " healed.");
         System.out.println(name + "'s hp: " + hp + "/" + hpMax);
     }
 
@@ -225,6 +226,7 @@ class Player{
      */
     public void addMoney(double toAdd){
         money += toAdd;
+        System.out.println(name + " got " + toAdd + "credits.");
     }
 
     /**
