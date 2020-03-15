@@ -49,4 +49,13 @@ public class Medicine{
         uses -= 1;
         return heal;
     }
+
+    /**
+     * Transforms medicine into a String
+     * @return The medicine's name, heal value, and uses
+     */
+    @Override
+    public String toString(){
+        return name + ":: Heal: " + heal + ":: Uses: " + uses;
+    }
 }
