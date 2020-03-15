@@ -26,8 +26,9 @@ public class MenuMain{
 
         if(action == 3){
             Weapon w = new Weapon(50, 10, "Big Gun", 200);
-            Shop mainShop = new Shop(player, w);
-            Shop.shopping(player);
+//            Shop mainShop = new Shop(player, w);
+//            Shop.shopping(player);
+            System.out.println("shop unavailable");
         }
 
         if(action == 4){

@@ -23,7 +23,7 @@ public class Battle{
                     enemy.sustainDamage(player.attack());
                     if (enemy.isDead()) {
                         playerTurn = false;
-                        alienTurn = false;
+                        alienTurn = true;
                     }
                 } else if (action == Player.HEAL) {
                     if (player.isFullHp()) {
