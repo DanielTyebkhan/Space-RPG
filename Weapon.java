@@ -22,6 +22,13 @@ public class Weapon extends Sellable{
         this.ammo = maxAmmo;
     }
 
+    public Weapon(double damage, double ammo, double maxAmmo, String name, double price){
+        super(name, price);
+        this.damage = damage;
+        this.maxAmmo = maxAmmo;
+        this.ammo = ammo;
+    }
+
     /**
      * Fires the weapon and removes ammunition
      * @return The weapon's damage if there is ammo remaining, else 0
@@ -49,6 +56,10 @@ public class Weapon extends Sellable{
      */
     public double getAmmo(){
         return ammo;
+    }
+
+    public void refillAmmo(){
+        ammo = maxAmmo;
     }
 
     /**

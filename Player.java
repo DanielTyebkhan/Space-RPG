@@ -172,6 +172,10 @@ class Player{
         }
     }
 
+    public int getNumWeapons(){
+        return weaponList.size();
+    }
+
     /**
      * Lets the player change Armor
      * @param toEquip The armor for the player to equip
@@ -194,6 +198,10 @@ class Player{
         medicineList.set(0, toEquip);
         medicineList.set(index, first);
         System.out.println(toEquip.getName() + " was equipped");
+    }
+
+    public void refillWeapon(int weapon){
+        weaponList.get(weapon-1).refillAmmo();
     }
 
     /**
@@ -234,7 +242,7 @@ class Player{
         System.out.println(name + " got " + toAdd + " credits.");
     }
 
-    public void loseMoney(double toLose){
+    public void takeMoney(double toLose){
         money -= toLose;
         System.out.println(name + " lost " + toLose + " credits");
     }
@@ -244,7 +252,7 @@ class Player{
      */
     public void die(){
         hp = hpMax;
-        loseMoney(50);
+        takeMoney(50);
     }
 }
 
