@@ -5,7 +5,7 @@ public class Game{
 
         Player player = new Player(200, 500);
         player.chooseName();
-        player.addWeapon(new Weapon(10,100, "Space Rifle", 0));
+        player.addWeapon(new Weapon(10,100, "Space Rifle"));
         player.addMedicine(new Medicine(10, 5, "Weak Medicine", 0));
         Alien alien = new Alien(5,30,1,1, 20, "Arachnid");
         System.out.println("Welcome to Space " + player.getName());

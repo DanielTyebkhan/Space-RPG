@@ -15,12 +15,13 @@ public class Weapon extends Sellable{
      * @param name The weapon's name
      * @param price The weapon's price
      */
-    public Weapon(double damage, double maxAmmo, String name, double price){
-        super(name, price);
+    public Weapon(double damage, double maxAmmo, String name){
+        super(name, 0);
         this.damage = damage;
         this.maxAmmo = maxAmmo;
         this.ammo = maxAmmo;
     }
+
 
     public Weapon(double damage, double ammo, double maxAmmo, String name, double price){
         super(name, price);
