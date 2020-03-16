@@ -151,6 +151,7 @@ class Player{
             System.out.println(a);
         }
         System.out.println(name +" Has " + money + " Credits.");
+        //TODO let players change loadout
     }
 
     /**

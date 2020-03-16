@@ -58,13 +58,13 @@ public class Shop{
     }
 
     /**
-     * MAKE PUBLIC?
+     *
      */
     private void shop(){
         showOptionsMain();
         showSellables();
         System.out.println("What are you buying?");
-        int action = shopper.getInput(1,START_LISTINGS+products.size());
+        int action = shopper.getInput(1,START_LISTINGS+products.size()-1);
         if(action == INVENTORY){
             shopper.showInventory();
             shop();
