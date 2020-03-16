@@ -32,10 +32,12 @@ public class MenuMain{
 
         if(action == 4){
             player.showInventory();
+            showMenuMain(player);
         }
 
         if(action == 5){
             player.changeLoadout();
+            showMenuMain(player);
         }
     }
 }

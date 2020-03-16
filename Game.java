@@ -3,7 +3,7 @@ import java.util.concurrent.TimeUnit;
 public class Game{
     public static void main(String[] args){
 
-        Player player = new Player(200, 500);
+        Player player = new Player(200, 100000);
         player.chooseName();
         player.addWeapon(new Weapon(10,100, "Space Rifle"));
         player.addMedicine(new Medicine(10, 5, "Weak Medicine", 0));
@@ -34,7 +34,7 @@ public class Game{
         }catch(InterruptedException e){
         }
 
-        Battle intro = new Battle(player, alien);
+        new Battle(player, alien);
 
         MenuMain.showMenuMain(player);
     }
