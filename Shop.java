@@ -70,7 +70,6 @@ public class Shop{
             shop();
         }else if(action == MENU){
             MenuMain.showMenuMain(shopper);
-            MenuMain.menuMainAction(shopper);
         }else if(action == AMMO){
             refillAmmo();
         }else{

@@ -68,16 +68,13 @@ public class Battle{
             System.out.println(player.getName() + " has defeated " + alien.getName());
             player.addMoney(alien.getMoney());
             MenuMain.showMenuMain(player);
-            MenuMain.menuMainAction(player);
         }else if(player.isDead()) {
             System.out.println(alien.getName() + " has defeated " + player.getName());
             player.die();
             MenuMain.showMenuMain(player);
-            MenuMain.menuMainAction(player);
         }else if(playerRan) {
             System.out.println(player.getName() + " ran away.");
             MenuMain.showMenuMain(player);
-            MenuMain.menuMainAction(player);
         }
     }
 

@@ -37,7 +37,5 @@ public class Game{
         Battle intro = new Battle(player, alien);
 
         MenuMain.showMenuMain(player);
-        MenuMain.menuMainAction(player);
-
     }
 }

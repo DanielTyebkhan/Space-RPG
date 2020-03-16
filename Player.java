@@ -151,26 +151,41 @@ class Player{
             System.out.println(a);
         }
         System.out.println(name +" Has " + money + " Credits.");
-        //TODO let players change loadout
+    }
+
+    public void changeLoadout(){
+        equipWeapon();
+        equipArmor();
     }
 
     /**
      * Lets the player change weapons
      */
     public void equipWeapon(){
-        System.out.println("Select the Weapon to Equip:");
-        showWeapons();
-        int index = getInput(1, weaponList.size()) -1;
-        Weapon swap1 = weaponList.get(0);
-        weaponList.set(0, weaponList.get(index));
-        weaponList.set(index, swap1);
-        System.out.println(weaponList.get(index).getName() + " was equipped!");
+        if(hasWeapons()) {
+            System.out.println("Select the Weapon to Equip:");
+            showWeapons();
+            int index = getInput(1, weaponList.size()) - 1;
+            Weapon first = weaponList.get(0);
+            weaponList.set(0, weaponList.get(index));
+            weaponList.set(index, first);
+            System.out.println(weaponList.get(0).getName() + " was equipped!");
+        }else{
+            showWeapons();
+        }
     }
 
     public void showWeapons(){
+        if(!hasWeapons()){
+            System.out.println("You have no weapons");
+        }
         for(int i = 0; i<weaponList.size(); i++){
             System.out.println(i+1 + ") " + weaponList.get(i));
         }
+    }
+
+    public boolean hasWeapons(){
+        return weaponList.size() > 0;
     }
 
     public int getNumWeapons(){
@@ -179,14 +194,32 @@ class Player{
 
     /**
      * Lets the player change Armor
-     * @param toEquip The armor for the player to equip
      */
-    public void equipArmor(Armor toEquip){
-        int index = armorList.indexOf(toEquip);
-        Armor first = armorList.get(0);
-        armorList.set(0, toEquip);
-        armorList.set(index, first);
-        System.out.println(toEquip.getName() + " was equipped");
+    public void equipArmor(){
+        if(hasArmor()) {
+            System.out.println("Select the Armor to Equip");
+            showArmor();
+            int index = getInput(1, armorList.size()) - 1;
+            Armor first = armorList.get(0);
+            armorList.set(0, armorList.get(index));
+            armorList.set(index, first);
+            System.out.println(armorList.get(0).getName() + " was equipped");
+        }else{
+            showArmor();
+        }
+    }
+
+    public void showArmor(){
+        if(!hasArmor()){
+            System.out.println("You have no Armor");
+        }
+        for(int i = 0; i<armorList.size(); i++){
+            System.out.println(i+1 + ") " + armorList.get(i));
+        }
+    }
+
+    public boolean hasArmor(){
+        return armorList.size() > 0;
     }
 
     /**
