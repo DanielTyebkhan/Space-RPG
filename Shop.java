@@ -1,6 +1,8 @@
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
+/**
+ * @author Daniel Tyebkhan
+ */
 public class Shop{
     private static final int INVENTORY = 1;
     private static final int MENU = 2;
@@ -10,6 +12,10 @@ public class Shop{
     private Player shopper;
     private ArrayList<Sellable> products;
 
+    /**
+     * Constructor
+     * @param shopper The player who is shopping
+     */
     public Shop(Player shopper){
         this.shopper = shopper;
         products = new ArrayList<>();
@@ -19,7 +25,10 @@ public class Shop{
         shop();
     }
 
-    public void showOptions(){
+    /**
+     * Shows the players options in the sop
+     */
+    private void showOptions(){
         System.out.println(shopper.getName() + ", Welcome to the Space Station!");
         System.out.println(shopper.getName() + "'s credits: " + shopper.getMoney());
         System.out.println("Please Select an Item to Purchase or Action to Take");
@@ -29,7 +38,10 @@ public class Shop{
         showSellables();
     }
 
-    public void showSellables(){
+    /**
+     * Shows the Sellables the player can purchase
+     */
+    private void showSellables(){
         int i = START_LISTINGS;
         for(Sellable s: products){
             System.out.println(i + ") " + s);
@@ -37,11 +49,18 @@ public class Shop{
         }
     }
 
+    /**
+     * Adds a Sellable to the shop
+     * @param toAdd The Sellable to add
+     */
     public void addItem(Sellable toAdd) {
         products.add(toAdd);
     }
 
-    public void shop(){
+    /**
+     * MAKE PUBLIC?
+     */
+    private void shop(){
         showOptions();
         showSellables();
         System.out.println("What are you buying?");
