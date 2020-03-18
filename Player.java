@@ -44,6 +44,10 @@ class Player{
         return name;
     }
 
+    /**
+     * Gets the player's current HP
+     * @return The player's HP
+     */
     public double getHp(){
         return hp;
     }
@@ -81,7 +85,7 @@ class Player{
     }
 
     /**
-     * Makes the player heal
+     * Allows a player to select Medicine from their inventory and use it
      */
     public void heal(){
         System.out.println("Select a Medicine");
@@ -94,6 +98,9 @@ class Player{
         System.out.println(name + "'s hp: " + hp + "/" + hpMax);
     }
 
+    /**
+     * Shows the player what Medicines they have
+     */
     private void showMedicine() {
         if(!hasMedicine()){
             System.out.println("You have no medicine");
@@ -103,6 +110,10 @@ class Player{
         }
     }
 
+    /**
+     * Checks if the player has any Medicine
+     * @return true if the player has medicine, else false
+     */
     public boolean hasMedicine(){
         return medicineList.size() > 0;
     }
@@ -171,6 +182,9 @@ class Player{
         System.out.println(name +" Has " + money + " Credits.");
     }
 
+    /**
+     * Allows the player to change which weapon and armor are equipped
+     */
     public void changeLoadout(){
         equipWeapon();
         equipArmor();
@@ -193,6 +207,9 @@ class Player{
         }
     }
 
+    /**
+     * Shows the player what weapons they have
+     */
     public void showWeapons(){
         if(!hasWeapons()){
             System.out.println("You have no weapons");
@@ -202,10 +219,18 @@ class Player{
         }
     }
 
+    /**
+     * Checks if the player has weapons
+     * @return true if the player has weapons, else false
+     */
     public boolean hasWeapons(){
         return weaponList.size() > 0;
     }
 
+    /**
+     * Gets the number of weapons a player has
+     * @return The number of weapons in the player's inventory
+     */
     public int getNumWeapons(){
         return weaponList.size();
     }
@@ -227,6 +252,9 @@ class Player{
         }
     }
 
+    /**
+     * Displays the armor in the player's inventory
+     */
     public void showArmor(){
         if(!hasArmor()){
             System.out.println("You have no Armor");
@@ -236,6 +264,10 @@ class Player{
         }
     }
 
+    /**
+     * Checks if the player has armor
+     * @return true if the player has armor, else false
+     */
     public boolean hasArmor(){
         return armorList.size() > 0;
     }
@@ -252,6 +284,10 @@ class Player{
         System.out.println(toEquip.getName() + " was equipped");
     }
 
+    /**
+     * Refills a player's weapon's ammo
+     * @param weapon the number of the weapon in the inventory
+     */
     public void refillWeapon(int weapon){
         weaponList.get(weapon-1).refillAmmo();
     }
@@ -281,6 +317,10 @@ class Player{
         return action;
     }
 
+    /**
+     * Gets the player's amount of money
+     * @return The amount of money the player has
+     */
     public double getMoney(){
         return money;
     }
@@ -294,6 +334,10 @@ class Player{
         System.out.println(name + " got " + toAdd + " credits.");
     }
 
+    /**
+     * Makes the player lose money
+     * @param toLose The amount of money to take from the player
+     */
     public void takeMoney(double toLose){
         money -= toLose;
         System.out.println(name + " lost " + toLose + " credits");
