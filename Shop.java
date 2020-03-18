@@ -8,6 +8,7 @@ public class Shop{
     private static final int MENU = 2;
     private static final int AMMO = 3;
     private static final int START_LISTINGS = 4;
+    private static final double AMMO_COST = 20;
 
     private Player shopper;
     private ArrayList<Sellable> products;
@@ -58,7 +59,7 @@ public class Shop{
     }
 
     /**
-     *
+     * Lets the player shop by showing the shop menu and players inventory
      */
     private void shop(){
         showOptionsMain();
@@ -77,6 +78,9 @@ public class Shop{
         }
     }
 
+    /**
+     * Lets the player select the weapon to refill
+     */
     private void refillAmmo(){
         System.out.println("Which gun would you like to refill?");
         shopper.showWeapons();
@@ -84,14 +88,18 @@ public class Shop{
         refillAmmoAction(shopper.getInput(1, shopper.getNumWeapons() + 1));
     }
 
+    /**
+     * Refills the ammo of a weapon if the player has enough money
+     * @param action the number of the weapon being refilled
+     */
     private void refillAmmoAction(int action){
         if(action == shopper.getNumWeapons() + 1){
             shop();
         }else{
-            if(shopper.getMoney() < 20){
+            if(shopper.getMoney() < AMMO_COST){
                 System.out.println("You don't have enough credits to purchase that");
             }else{
-                shopper.takeMoney(20);
+                shopper.takeMoney(AMMO_COST);
                 shopper.refillWeapon(action);
                 System.out.println("Ammo Refilled");
                 refillAmmo();
@@ -99,6 +107,10 @@ public class Shop{
         }
     }
 
+    /**
+     * Sells a Sellable product to the player
+     * @param product The product being sold
+     */
     public void sellItem(Sellable product){
         if(shopper.getMoney() < product.getPrice()){
             System.out.println("You don't have enough credits to purchase that");
