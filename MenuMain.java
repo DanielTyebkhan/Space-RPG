@@ -16,13 +16,11 @@ public class MenuMain{
 
         if(action == 1){
             Alien nomac = new Alien(5,50,.25,5, 20, "Nomac");
-            System.out.println(player.getName() + " has encountered " + nomac.getName());
             new Battle(player, nomac);
         }
 
         if(action == 2){
             Alien protoss = new Alien(20, 100, 0, 10, 100, "Protoss");
-            System.out.println(player.getName() + " has encountered " + protoss.getName());
             new Battle(player, protoss);
         }
 
