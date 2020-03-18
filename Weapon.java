@@ -13,7 +13,6 @@ public class Weapon extends Sellable{
      * @param damage The weapon's damage
      * @param maxAmmo The maximum ammunition the weapon can store
      * @param name The weapon's name
-     * @param price The weapon's price
      */
     public Weapon(double damage, double maxAmmo, String name){
         super(name, 0);
@@ -22,7 +21,14 @@ public class Weapon extends Sellable{
         this.ammo = maxAmmo;
     }
 
-
+    /**
+     * Constructor
+     * @param damage The weapon's damage
+     * @param ammo The weapon's starting ammunition
+     * @param maxAmmo The weapon's ammunition capacity
+     * @param name The weapon's name
+     * @param price The weapon's price
+     */
     public Weapon(double damage, double ammo, double maxAmmo, String name, double price){
         super(name, price);
         this.damage = damage;
@@ -59,6 +65,9 @@ public class Weapon extends Sellable{
         return ammo;
     }
 
+    /**
+     * Refills a weapon's ammunition
+     */
     public void refillAmmo(){
         ammo = maxAmmo;
     }
