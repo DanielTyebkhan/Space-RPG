@@ -29,9 +29,13 @@ public class Battle{
                     if (player.isFullHp()) {
                         System.out.println(player.getName() + " already has full hp");
                     } else {
+                        double initialHp = player.getHp();
                         player.heal();
-                        playerTurn = false;
-                        alienTurn = true;
+                        double finalHp = player.getHp();
+                        if (initialHp != finalHp) {
+                            playerTurn = false;
+                            alienTurn = true;
+                        }
                     }
                 } else if (action == Player.RUN) {
                     if (player.canRun()) {

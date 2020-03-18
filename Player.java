@@ -44,6 +44,9 @@ class Player{
         return name;
     }
 
+    public double getHp(){
+        return hp;
+    }
 
     /**
      * Add's a weapon to a player's inventory
@@ -81,12 +84,27 @@ class Player{
      * Makes the player heal
      */
     public void heal(){
-        hp += medicineList.get(0).use();
+        System.out.println("Select a Medicine");
+        showMedicine();
+        hp += medicineList.get(getInput(1, medicineList.size()) - 1).use();
         if(hp>hpMax){
             hp = hpMax;
         }
         System.out.println(name + " healed.");
         System.out.println(name + "'s hp: " + hp + "/" + hpMax);
+    }
+
+    private void showMedicine() {
+        if(!hasMedicine()){
+            System.out.println("You have no medicine");
+        }
+        for(int i = 0; i<medicineList.size(); i++){
+            System.out.println(i+1 + ") " + medicineList.get(i));
+        }
+    }
+
+    public boolean hasMedicine(){
+        return medicineList.size() > 0;
     }
 
     /**
