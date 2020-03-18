@@ -29,6 +29,7 @@ class Player{
         this.hpMax = hpMax;
         this.hp = hpMax;
         this.money = money;
+        name = "Soldier";
 
         weaponList = new ArrayList <>();
         medicineList = new ArrayList <>();

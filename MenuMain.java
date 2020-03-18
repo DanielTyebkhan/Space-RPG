@@ -1,5 +1,11 @@
+/**
+ * @author Daniel Tyebkhan
+ */
 public class MenuMain{
-
+    /**
+     * Shows the main menu
+     * @param player The player the menu is being shown to
+     */
     public static void showMenuMain(Player player){
         System.out.println("Welcome to Orbit " + player.getName() + "!");
         System.out.println("Please select an action:");
@@ -11,6 +17,10 @@ public class MenuMain{
         menuMainAction(player);
     }
 
+    /**
+     * Lets the user select from the main menu
+     * @param player the player selecting
+     */
     private static void menuMainAction(Player player){
         int action = player.getInput(1,5);
 
